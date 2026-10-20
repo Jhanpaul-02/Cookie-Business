@@ -21,6 +21,29 @@ app.get('/api/cookies', async (request, response) => {
   }
 })
 
+app.get('/api/orders', async (request, response) => {
+  try {
+    const result = await pool.query(`
+      SELECT
+        orders.id AS order_id,
+        orders.customer_name,
+        orders.status,
+        orders.payment_status,
+        COALESCE(SUM(order_items.quantity * order_items.unit_price), 0) AS order_total,
+        orders.created_at
+      FROM orders
+      LEFT JOIN order_items ON order_items.order_id = orders.id
+      GROUP BY orders.id
+      ORDER BY orders.created_at DESC
+    `)
+
+    response.json(result.rows)
+  } catch (error) {
+    console.error('Error fetching orders:', error)
+    response.status(500).json({ error: 'Failed to fetch orders' })
+  }
+})
+
 app.post('/api/cookies', async (request, response) => {
   const { name, description, price, image, label } = request.body
 
