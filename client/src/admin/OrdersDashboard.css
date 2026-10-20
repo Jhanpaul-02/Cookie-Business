@@ -1,0 +1,33 @@
+.orders-section {
+  padding: 56px clamp(22px, 10vw, 150px);
+  border-top: 1px solid var(--line);
+}
+
+.orders-table-wrap {
+  overflow-x: auto;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 12px;
+}
+
+.orders-table th,
+.orders-table td {
+  padding: 14px 12px;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+
+.orders-table th {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.orders-table td:last-child {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}

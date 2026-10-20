@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./App.css";
 
 function App() {
@@ -103,7 +104,7 @@ function App() {
 
         {isLoading && <p role="status">Loading the cookie menu...</p>}
         {error && <p role="alert">{error}</p>}
-        
+
         <div className="cookie-grid">
           {cookies.map((cookie, index) => {
             const quantity = cart.filter(
@@ -161,7 +162,6 @@ function App() {
           })}
         </div>
       </section>
-
       <footer className="footer">
         <span>Khaleb's Cookie</span>
         <span>Made fresh, one batch at a time.</span>
